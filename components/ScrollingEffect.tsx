@@ -4,7 +4,7 @@ import useScrollStore from "@/store/useScrollStore";
 import { ScrollResult } from "@/types/scroll";
 
 type OmitDestroyed = Exclude<ScrollResult, "destroyed">;
-const preloadImages: Record<OmitDestroyed, string> = {
+const effactImages: Record<OmitDestroyed, string> = {
   "success": "/images/scroll-success.gif",
   "failed": "/images/scroll-failed.gif",
 };
@@ -20,7 +20,7 @@ const ScrollingEffect = () => {
     if (scrollResult) {
       setCurrentResult(result);
       setEffectKey(Date.now()); // force re-render
-      new Audio(`/sounds/scroll-${result}.mp3`).play().catch(console.error);
+      new Audio(`/sounds/scroll-${result}.mp3`).play()
 
       setTimeout(() => setCurrentResult(null), 700);
     }
@@ -28,16 +28,10 @@ const ScrollingEffect = () => {
 
   return (
     <div className="size-80 pointer-events-none relative">
-      {/* hidden preload images */}
-      <div className="hidden">
-        <img src={preloadImages.success} />
-        <img src={preloadImages.failed} />
-      </div>
-
       {currentResult && (
         <img
           key={effectKey}
-          src={preloadImages[currentResult]}
+          src={effactImages[currentResult]+ `?t=${effectKey}`} // add timestamp to prevent caching
           className="absolute top-0 left-0 w-full h-full object-cover"
           alt="scroll effect"
         />
