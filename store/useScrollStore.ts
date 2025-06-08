@@ -26,7 +26,6 @@ const useScrollStore = create<ScrollState>((set, get) => ({
   scrollType: 10,
   successRate: scrollRates[10].success,
   destroyedRate: scrollRates[10].destroyed,
-  lastScrollResult: "success",
   successStreak: 0,
   failedStreak: 0,
 

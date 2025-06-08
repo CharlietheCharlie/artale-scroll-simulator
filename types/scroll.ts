@@ -8,3 +8,5 @@ export interface IScrollLog {
     scrollType: ScrollType,
     scrollResult: ScrollResult,
 }
+
+export type ScrollInterval = 700;

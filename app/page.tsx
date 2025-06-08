@@ -1,5 +1,8 @@
 import { ModeToggle } from "@/components/ModeToggle";
+import ScrollingButton from "@/components/ScrollingButton";
+import ScrollingEffect from "@/components/ScrollingEffect";
 import ScrollTypeSelector from "@/components/ScrollTypeSelector";
+import { Separator } from "@/components/ui/separator";
 import React from "react";
 
 const Home = (): React.ReactElement => {
@@ -8,7 +11,14 @@ const Home = (): React.ReactElement => {
       <div className="hover-target">
         <ModeToggle></ModeToggle>
       </div>
-      <ScrollTypeSelector></ScrollTypeSelector>
+      <div className="flex flex-col items-center gap-4">
+        <ScrollTypeSelector></ScrollTypeSelector>
+        <ScrollingButton></ScrollingButton>
+      </div>
+      <Separator className="my-4" />
+      <div className="flex justify-center">
+        <ScrollingEffect></ScrollingEffect>
+      </div>
     </div>
   );
 };
