@@ -55,7 +55,7 @@ const Cursor = () => {
     <div
       ref={cursorRef}
       id="cursor"
-      className="pointer-events-none fixed z-[9999] w-10 h-10 -translate-x-1/2 -translate-y-1/2"
+      className="pointer-events-none fixed z-[9999] w-10 h-10"
       style={{
         backgroundImage: `url(${
           isClicking
