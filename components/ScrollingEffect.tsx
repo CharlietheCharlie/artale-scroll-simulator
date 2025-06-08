@@ -16,8 +16,8 @@ const ScrollingEffect = () => {
 
   useEffect(() => {
     const scrollResult = history.at(-1)?.scrollResult;
-    const result: OmitDestroyed = scrollResult === "success" || scrollResult === "failed" ? scrollResult : "failed";
-    if (result) {
+    const result: OmitDestroyed = scrollResult === "success" ? "success" : "failed";
+    if (scrollResult) {
       setCurrentResult(result);
       setEffectKey(Date.now()); // force re-render
       new Audio(`/sounds/scroll-${result}.mp3`).play().catch(console.error);
