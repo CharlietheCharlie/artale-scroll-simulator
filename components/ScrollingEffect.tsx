@@ -1,38 +1,49 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import useScrollStore from "@/store/useScrollStore";
 import { ScrollResult } from "@/types/scroll";
-import { useEffect, useRef, useState } from "react";
+
+type OmitDestroyed = Exclude<ScrollResult, "destroyed">;
+const preloadImages: Record<OmitDestroyed, string> = {
+  "success": "/images/scroll-success.gif",
+  "failed": "/images/scroll-failed.gif",
+};
 
 const ScrollingEffect = () => {
   const { history } = useScrollStore();
-  const [effectSrc, setEffectSrc] = useState<string | null>(null);
+  const [effectKey, setEffectKey] = useState(0);
+  const [currentResult, setCurrentResult] = useState<OmitDestroyed | null>(null);
 
   useEffect(() => {
-    const result = history.at(-1)?.scrollResult ?? null;
+    const scrollResult = history.at(-1)?.scrollResult;
+    const result: OmitDestroyed = scrollResult === "success" || scrollResult === "failed" ? scrollResult : "failed";
     if (result) {
-      const url = `/images/scroll-${result}.gif?t=${Date.now()}`;
-      setEffectSrc(url);
+      setCurrentResult(result);
+      setEffectKey(Date.now()); // force re-render
+      new Audio(`/sounds/scroll-${result}.mp3`).play().catch(console.error);
 
-      const audio = new Audio(`/sounds/scroll-${result}.mp3`);
-      audio.play().catch(console.error);
-
-      setTimeout(() => setEffectSrc(null), 700);
+      setTimeout(() => setCurrentResult(null), 700);
     }
   }, [history]);
 
   return (
     <div className="size-80 pointer-events-none relative">
-      {effectSrc && (
+      {/* hidden preload images */}
+      <div className="hidden">
+        <img src={preloadImages.success} />
+        <img src={preloadImages.failed} />
+      </div>
+
+      {currentResult && (
         <img
-          src={effectSrc}
+          key={effectKey}
+          src={preloadImages[currentResult]}
           className="absolute top-0 left-0 w-full h-full object-cover"
-          alt="scrolling effect"
+          alt="scroll effect"
         />
       )}
     </div>
   );
 };
-
 
 export default ScrollingEffect;
