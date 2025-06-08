@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import { ModeToggle } from "@/components/ModeToggle";
 import ScrollingButton from "@/components/ScrollingButton";
 import ScrollingEffect from "@/components/ScrollingEffect";
@@ -10,6 +11,9 @@ const Home = (): React.ReactElement => {
     <div>
       <div className="hover-target">
         <ModeToggle></ModeToggle>
+      </div>
+      <div className="flex justify-center">
+        <Logo></Logo>
       </div>
       <div className="flex flex-col items-center gap-4">
         <ScrollTypeSelector></ScrollTypeSelector>
