@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Artale 衝卷模擬器",
-  description: '卷軸不夠，墊卷模擬器來湊。',
+  description: '卷軸不夠，衝卷模擬器來湊。',
   openGraph: {
     title: 'Artale 衝卷模擬器',
-    description: '卷軸不夠，墊卷模擬器來湊。',
+    description: '卷軸不夠，衝卷模擬器來湊。',
     images: '/images/logo.png',
   },
 };
