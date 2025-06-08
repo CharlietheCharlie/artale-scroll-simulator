@@ -29,23 +29,22 @@ const Home = (): React.ReactElement => {
         <ScrollTypeSelector></ScrollTypeSelector>
         <ScrollingButton></ScrollingButton>
       </div>
-      <Separator className="my-5" />
-      <div className="relative h-96 w-full">
+      <div className="mt-4 relative h-120 w-full flex justify-center items-center">
         {/* 背景層 */}
-        {mounted && <div
-          className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-50"
-          style={{
-            backgroundImage:
-              theme === "dark"
-                ? "url('/images/bg-kerning-city.jpg')"
-                : "url('/images/bg-henesys.jpg')",
-          }}
-        ></div>}
+        {mounted && (
+          <div
+            className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-50"
+            style={{
+              backgroundImage:
+                theme === "dark"
+                  ? "url('/images/bg-kerning-city.jpg')"
+                  : "url('/images/bg-henesys.jpg')",
+            }}
+          ></div>
+        )}
 
         {/* 內容層 */}
-        <div className="relative flex justify-center h-full">
-          <ScrollingEffect />
-        </div>
+        <ScrollingEffect />
       </div>
     </div>
   );

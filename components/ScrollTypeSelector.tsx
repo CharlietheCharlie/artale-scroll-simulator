@@ -21,6 +21,7 @@ const ScrollTypeSelector = () => {
               )}
             >
               <Image
+                className="size-16"
                 src={`/images/scroll-${type}.png`}
                 alt={`scroll-${type}`}
                 width={50}
